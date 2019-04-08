@@ -1,0 +1,18 @@
+book:
+    type:       map
+    required:   false
+    min:        1
+    max:        5
+    items:
+        -   author:
+                type:   string
+        -   title:
+                type:   string
+        -   year:
+                type:   int
+
+library:
+    type:       list
+    required:   true
+    item_types:
+        -   book

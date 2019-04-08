@@ -1,0 +1,587 @@
+empty_schema:
+# incorrect
+    schema:
+
+definitions_part_is_not_a_map:
+# incorrect
+    schema:
+        -   person
+        -   animal
+
+component_has_no_definition:
+# incorrect
+    schema:
+        person: 
+
+component_definition_is_not_a_map:
+# incorrect
+    schema:
+        person:
+            type
+
+component_has_no_type:
+# incorrect
+    schema:
+        person:
+            hello:  world
+
+component_type_is_not_a_string:
+# incorrect
+    schema:
+        person:
+            type:  10
+
+component_type_unknown:
+# incorrect
+    schema:
+        person:
+            type:  hello
+
+component_type_bool:
+# correct
+    schema:
+        logical:
+            type:   bool
+
+component_type_string:
+# correct
+    schema:
+        text:
+            type:   string
+
+component_type_int:
+# correct
+    schema:
+        number:
+            type:   int
+
+component_type_float:
+# correct
+    schema:
+        number:
+            type:   float
+
+map_has_no_items_component:
+# incorrect
+    schema:
+        person:
+            type:   map
+
+map_has_none_items_component:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+
+map_items_component_is_not_a_list:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                a:  b
+
+map_has_empty_items_component:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:  []
+
+map_item_is_none:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                -   
+
+map_item_is_not_a_map:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                -   name
+
+map_item_is_empty:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                -   {}
+
+map_item_has_no_definition:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                -   age:
+                        type:   int
+                -   name:
+
+map_item_has_no_type:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                -   age:
+                        type:   int
+                -   name:
+                        hello:  world
+
+map_item_has_unknown_type:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                -   age:
+                        type:   int
+                -   name:
+                        type:   text
+
+map_item_required_is_not_a_bool:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                -   age:
+                        type:       int
+                -   name:
+                        type:       string
+                        required:   8
+                -   eye_color:
+                        type:       string
+                        required:   false
+                -   weight:
+                        type:       float
+
+simple_map_type:
+# correct
+    schema:
+        person:
+            type:   map
+            items:
+                -   age:
+                        type:       int
+                -   name:
+                        type:       string
+                        required:   true
+                -   eye_color:
+                        type:       string
+                        required:   false
+                -   weight:
+                        type:       float
+
+alias_map_type:
+# correct
+    schema:
+        person:
+            type:   map
+            items:
+                -   age:
+                        type:       int
+                -   name:
+                        type:       string
+                        required:   true
+                -   eye_color:
+                        type:       string
+                        required:   false
+                -   weight:
+                        type:       float
+
+        human:
+            type:   person
+
+map_item_has_map_type:
+# correct
+    schema:
+        person:
+            type:   map
+            items:
+                -   age:
+                        type:   int
+                -   name:
+                        type:   map
+                        items:
+                            -   first_name: 
+                                    type:   string
+                            -   last_name:
+                                    type:   string
+
+map_contains_unknown_type:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                -   age:
+                        type:   int
+                -   name:
+                        type:   string
+                -   car:
+                        type:   vehicle
+
+deep_map:
+# correct
+    schema:
+        person:
+            type:   map
+            items:
+                -   age:
+                        type:   int
+                -   name:
+                        type:   map
+                        items:
+                            -   first_name: 
+                                    type:   string
+                            -   last_name:
+                                    type:   string
+                            -   hello:
+                                    type:   map
+                                    items:
+                                        -   world:
+                                                type:   float
+
+map_item_has_predefined_type:
+# correct
+    schema:
+        animal:
+            type:   map
+            items:
+                -   name:
+                        type:   string
+                -   age:
+                        type:   int
+        person:
+            type:   map
+            items:
+                -   age:
+                        type:   int
+                -   name:
+                        type:   string
+                -   pet:
+                        type:   animal
+
+map_is_recursive:
+# correct
+    schema:
+        node:
+            type:   map
+            items:
+                -   data:
+                        type:   int
+                -   left:
+                        type:   node
+                -   right:
+                        type:   node
+
+mutually_recursive_maps:
+# correct
+    schema:
+        a:
+            type:   map
+            items:
+                -   text:
+                        type:   string
+                -   other:
+                        type:   b
+
+        b:
+            type:   map
+            items:
+                -   number:
+                        type:   int
+                -   other:
+                        type:   a
+
+list_has_no_item_types_component:
+# incorrect
+    schema:
+        sequence:
+            type:   list
+
+list_has_none_item_types_component:
+# incorrect
+    schema:
+        sequence:
+            type:   list
+            item_types:
+
+list_item_types_component_is_not_a_list:
+# incorrect
+    schema:
+        sequence:
+            type:   list
+            item_types:
+                a:  b
+
+list_item_types_component_is_empty_list:
+# incorrect
+    schema:
+        sequence:
+            type:   list
+            item_types: []
+
+simple_list:
+# correct
+    schema:
+        sequence:
+            type:   list
+            item_types:
+                -   int
+
+multitype_list:
+# correct
+    schema:
+        sequence:
+            type:   list
+            item_types:
+                -   int
+                -   string
+                -   float
+
+list_min_not_int:
+# incorrect
+    schema:
+        sequence:
+            type:   list
+            min:    hello
+            item_types:
+                -   int
+
+list_min_negative:
+# incorrect
+    schema:
+        sequence:
+            type:   list
+            min:    -5
+            item_types:
+                -   int
+
+list_min:
+# correct
+    schema:
+        sequence:
+            type:   list
+            min:    5
+            item_types:
+                -   int
+
+list_max_not_int:
+# incorrect
+    schema:
+        sequence:
+            type:   list
+            max:    hello
+            item_types:
+                -   int
+
+list_max_negative:
+# incorrect
+    schema:
+        sequence:
+            type:   list
+            max:    -5
+            item_types:
+                -   int
+
+list_max:
+# correct
+    schema:
+        sequence:
+            type:   list
+            max:    5
+            item_types:
+                -   int
+
+list_min_greater_than_max:
+# incorrect
+    schema:
+        sequence:
+            type:   list
+            max:    5
+            min:    10
+            item_types:
+                -   int
+
+list_min_max:
+# correct
+    schema:
+        sequence:
+            type:   list
+            max:    5
+            min:    3
+            item_types:
+                -   int
+
+list_contains_unknown_type:
+# incorrect
+    schema:
+        sequence:
+            type:   list
+            max:    5
+            min:    3
+            item_types:
+                -   person
+
+list_contains_predefined_type:
+# correct
+    schema:
+        person:
+            type:   map
+            items:
+                -   name:
+                        type:   string
+
+        sequence:
+            type:   list
+            max:    5
+            min:    3
+            item_types:
+                -   person
+
+complex:
+# correct
+    schema:
+        dog:
+            type:   map
+            items:
+                -   name:
+                        type:   string
+                -   age:
+                        type:   int
+
+        person:
+            type:   map
+            items:
+                -   name:
+                        type:       string
+                -   age:
+                        type:       int
+                -   married:
+                        type:       bool
+                -   pets:
+                        type:       list
+                        required:   false
+                        item_types:
+                            -   dog
+
+        text:
+            type:   string
+
+        number:
+            type:   int
+
+        logical:
+            type:   bool
+
+        node:
+            type:   map
+            items:
+                -   data:  
+                        type:       int
+                -   left:
+                        type:       node
+                        required:   false
+                -   right:
+                        type:       node
+                        required:   false
+
+        book:
+            type:   map
+            items:
+                -   author:
+                        type:   person
+                -   title:
+                        type:   text
+
+        library:
+            type:       list
+            min:        1
+            max:        3
+            item_types:
+                -   book
+
+        outermap:
+            type:   map
+            items:
+                -   text:
+                        type:   string
+                -   innermap:
+                        type:   map
+                        items:
+                            -   number:
+                                    type:   int
+                            -   hello:
+                                    type:   float
+                -   f:
+                        type:   float
+
+        student:
+            type:   map
+            items:
+                -   name:
+                        type:   string
+                -   schools:
+                        type:   list
+                        item_types:
+                            -   school
+
+        school:
+            type:   map
+            items:
+                -   name:
+                        type:   string
+                -   students:
+                        type:   list
+                        item_types:
+                            -   student        
+
+complex2:
+# correct
+    schema:
+        book:
+            type:   map
+            items:
+                -   title:
+                        type:   string
+                -   year:
+                        type:   int
+
+        city:
+            type:   map
+            items:
+                -   name:
+                        type:   string
+                -   library:
+                        type:   map
+                        items:
+                            -   address:
+                                    type:   string
+                            -   books:
+                                    type:   list
+                                    item_types:
+                                        -   book
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

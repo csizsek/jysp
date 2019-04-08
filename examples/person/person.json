@@ -1,0 +1,13 @@
+{
+    "person": {
+        "birthday": {
+            "year": 1985,
+            "day": 29,
+            "month": 5
+        },
+        "name": {
+            "first_name": "Peter",
+            "last_name": "Csizsek"
+        }
+    }
+}

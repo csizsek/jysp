@@ -1,0 +1,13 @@
+library:
+    -   book:
+            title:      A Farewell to Arms
+            author:     Ernest Hemingway
+            year:       1929
+    -   book:
+            title:      Thus Spoke Zarathustra
+            author:     Friedrich W. Nietzsche
+            year:       1883
+    -   book:
+            title:      Moby Dick
+            author:     Herman Melville
+            year:       1851

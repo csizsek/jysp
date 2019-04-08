@@ -1,0 +1,44 @@
+{
+    "tree": {
+        "right": {
+            "right": {
+                "data": 8
+            },
+            "data": 5,
+            "left": {
+                "data": 78,
+                "left": {
+                    "right": {
+                        "data": 2
+                    },
+                    "data": 8,
+                    "left": {
+                        "data": -1
+                    }
+                }
+            }
+        },
+        "data": 67,
+        "left": {
+            "right": {
+                "right": {
+                    "data": 34
+                },
+                "data": 8,
+                "left": {
+                    "data": 0
+                }
+            },
+            "data": 0,
+            "left": {
+                "right": {
+                    "data": -90
+                },
+                "data": -6,
+                "left": {
+                    "data": 3
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "library": [
+        {
+            "book": {
+                "title": "A Farewell to Arms",
+                "year": 1929,
+                "author": "Ernest Hemingway"
+            }
+        },
+        {
+            "book": {
+                "title": "Thus Spoke Zarathustra",
+                "year": 1883,
+                "author": "Friedrich W. Nietzsche"
+            }
+        },
+        {
+            "book": {
+                "title": "Moby Dick",
+                "year": 1851,
+                "author": "Herman Melville"
+            }
+        }
+    ]
+}

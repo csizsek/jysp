@@ -1,0 +1,32 @@
+{
+    "book": {
+        "items": [
+            {
+                "author": {
+                    "type": "string"
+                }
+            },
+            {
+                "title": {
+                    "type": "string"
+                }
+            },
+            {
+                "year": {
+                    "type": "int"
+                }
+            }
+        ],
+        "required": false,
+        "type": "map",
+        "min": 1,
+        "max": 5
+    },
+    "library": {
+        "item_types": [
+            "book"
+        ],
+        "required": true,
+        "type": "list"
+    }
+}

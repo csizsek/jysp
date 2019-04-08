@@ -1,0 +1,26 @@
+{
+    "tree": {
+        "items": [
+            {
+                "data": {
+                    "required": true,
+                    "type": "int"
+                }
+            },
+            {
+                "left": {
+                    "required": false,
+                    "type": "tree"
+                }
+            },
+            {
+                "right": {
+                    "required": false,
+                    "type": "tree"
+                }
+            }
+        ],
+        "required": false,
+        "type": "map"
+    }
+}

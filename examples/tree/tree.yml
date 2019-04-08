@@ -1,0 +1,28 @@
+tree:
+    data:   67
+    left:
+        data:   0
+        left:
+            data:   -6
+            left:
+                data:   3
+            right:
+                data:   -90
+        right:
+            data:   8
+            left:
+                data:   0
+            right:
+                data:   34
+    right:  
+        data:   5
+        left:
+            data:   78
+            left:
+                data:   8
+                left:
+                    data:   -1
+                right:
+                    data:   2
+        right:
+            data:   8

@@ -1,0 +1,64 @@
+{
+    "date": {
+        "items": [
+            {
+                "year": {
+                    "required": true,
+                    "type": "int"
+                }
+            },
+            {
+                "month": {
+                    "required": true,
+                    "type": "int"
+                }
+            },
+            {
+                "day": {
+                    "required": true,
+                    "type": "int"
+                }
+            }
+        ],
+        "required": false,
+        "type": "map"
+    },
+    "person": {
+        "items": [
+            {
+                "name": {
+                    "items": [
+                        {
+                            "first_name": {
+                                "required": true,
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "middle_name": {
+                                "required": false,
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "last_name": {
+                                "required": true,
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "required": true,
+                    "type": "map"
+                }
+            },
+            {
+                "birthday": {
+                    "required": true,
+                    "type": "date"
+                }
+            }
+        ],
+        "required": true,
+        "type": "map"
+    }
+}

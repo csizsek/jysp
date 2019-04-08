@@ -1,0 +1,13 @@
+tree:
+    required:   false
+    type:       map
+    items:
+        -   data:
+                type:       int
+                required:   true
+        -   left:
+                type:       tree
+                required:   false
+        -   right:
+                type:       tree
+                required:   false

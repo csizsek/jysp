@@ -1,0 +1,333 @@
+bool:
+# correct
+    schema:
+        logical:
+            type:   bool
+    data:
+        logical:    true
+
+string:
+# correct
+    schema:
+        text:
+            type:   string
+    data:
+        text:    hello
+
+int:
+# correct
+    schema:
+        number:
+            type:   int
+    data:
+        number:    -789
+
+float:
+# correct
+    schema:
+        value:
+            type:   float
+    data:
+        value:    5.
+
+not_bool:
+# incorrect
+    schema:
+        logical:
+            type:   bool
+    data:
+        logical:    5
+
+not_string:
+# incorrect
+    schema:
+        text:
+            type:   string
+    data:
+        text:    false
+
+not_int:
+# incorrect
+    schema:
+        number:
+            type:   int
+    data:
+        number:    hello
+
+not_float:
+# incorrect
+    schema:
+        value:
+            type:   float
+    data:
+        value:    5
+
+simple_map:
+# correct
+    schema:
+        person:
+            type:   map
+            items:
+                -   name:
+                        type:   string
+                -   age:
+                        type:   int
+
+    data:
+        person:
+            name:   Peter
+            age:    28
+
+map_is_not_map:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                -   name:
+                        type:   string
+                -   age:
+                        type:   int
+
+    data:
+        person:     4
+    
+map_item_wrong_type:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                -   name:
+                        type:   string
+                -   age:
+                        type:   int
+
+    data:
+        person:
+            name:   Peter
+            age:    nine
+
+unexpected_map_item:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                -   name:
+                        type:   string
+                -   age:
+                        type:   int
+
+    data:
+        person:
+            name:       Peter
+            age:        5
+            eye_color:  blue
+
+missing_map_item:
+# incorrect
+    schema:
+        person:
+            type:   map
+            items:
+                -   name:
+                        type:   string
+                -   age:
+                        type:   int
+
+    data:
+        person:
+            name:       Peter
+
+optional_component_is_missing:
+# correct
+    schema:
+        person:
+            type:       map
+            required:   false
+            items:
+                -   name:
+                        type:   string
+                -   age:
+                        type:   int
+
+    data:
+
+optional_map_item_is_missing:
+# correct
+    schema:
+        person:
+            type:   map
+            items:
+                -   name:
+                        type:       string
+                -   age:
+                        type:       int
+                        required:   false
+    
+    data:
+        person:
+            name:       Peter
+
+complex_map:
+# correct
+    schema:
+        name:
+            type:       map
+            required:   false
+            items:
+                -   first_name:
+                        type:       string
+                -   middle_name:
+                        type:       string
+                        required:   false
+                -   last_name:
+                        type:       string
+                        required:   true
+
+        dog:
+            type:       map
+            required:   false
+            items:
+                -   name:
+                        type:       string
+                        required:   true
+                -   age:
+                        type:       int
+                        required:   false
+
+        birthday:
+            type:       map
+            required:   false
+            items:
+                -   year:
+                        type:   int
+                -   month:
+                        type:   int
+                -   day:
+                        type:   int
+
+        person:
+            type:       map
+            required:   true
+            items:
+                -   name:
+                        type:       name
+                        required:   true
+                -   date_of_birth:
+                        type:       birthday
+                        required:   false
+                -   pet:
+                        type:       dog
+                        required:   false
+
+    data:
+        person:
+            name:
+                first_name:     Peter
+                last_name:      Csizsek
+            date_of_birth:
+                year:           1985
+                month:          5
+                day:            29
+            pet:
+                name:           Kormi
+                age:            3
+
+recursive_map:
+# correct
+    schema:
+        node:
+            type:   map
+            items:
+                -   data:  
+                        type:       int
+                -   left:
+                        type:       node
+                        required:   false
+                -   right:
+                        type:       node
+                        required:   false
+
+    data:
+        node:
+            data:   8
+            left:
+                data:   5
+                left:
+                    data:   0
+                    left:
+                        data:   45
+                    right:
+                        data:   3
+                right:
+                    data:   9
+            right:
+                data:   5
+                left:
+                    data:   4
+                right:
+                    data:   -3
+
+simple_list:
+# correct
+    schema:
+        sequence:
+            type:       list
+            required:   false
+            item_types:
+                -   int
+
+    data:
+        sequence:
+            -   int:    1
+            -   int:    2
+            -   int:    3
+
+list_unexpected_type:
+# incorrect
+    schema:
+        sequence:
+            type:       list
+            required:   false
+            item_types:
+                -   int
+
+    data:
+        sequence:
+            -   int:        1
+            -   string:     asd
+            -   int:        3
+
+list_too_few:
+# incorrect
+    schema:
+        sequence:
+            type:       list
+            required:   false
+            min:        4
+            item_types:
+                -   int
+
+    data:
+        sequence:
+            -   int:        1
+            -   int:        2
+            -   int:        3
+
+list_too_many:
+# incorrect
+    schema:
+        sequence:
+            type:       list
+            required:   false
+            max:        2
+            item_types:
+                -   int
+
+    data:
+        sequence:
+            -   int:        1
+            -   int:        2
+            -   int:        3
