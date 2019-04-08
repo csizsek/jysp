@@ -2,6 +2,7 @@
 This module contains the error types for both schema processing and validation.
 """
 
+
 class SchemaError(Exception):
     """
     This class represents error occurring during schema processing.
