@@ -35,3 +35,18 @@ namespace :test do
     desc 'All tests'
     task :all => [:type, :unit, :coverage, :lint]
 end
+
+namespace :docker do
+    desc 'Build Docker image'
+    task :build do
+        sh 'docker build -t csizsek/jysp:latest .'
+    end
+
+    desc 'Push image to registry'
+    task :push do
+        sh 'docker push csizsek/jysp:latest'
+    end
+
+    desc 'Docker build and push'
+    task :all => [:build, :push]
+end
