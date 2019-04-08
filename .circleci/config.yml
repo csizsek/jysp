@@ -7,5 +7,14 @@ jobs:
         steps:
             - checkout
             - run:
-                name: run tests
-                command: rake test:all
+                  name: python linter
+                  command: rake test:lint
+            - run:
+                name: type checks
+                command: rake test:type
+            - run:
+                name: unit tests
+                command: rake test:unit
+            - run:
+                  name: test coverage
+                  command: rake test:coverage

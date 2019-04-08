@@ -5,6 +5,15 @@ task :clean do
 end
 
 namespace :test do
+    desc 'Python linter'
+    task:lint do
+        sh 'pylint --disable=too-many-public-methods,missing-docstring src/descriptor.py'
+        sh 'pylint --disable=too-many-public-methods,missing-docstring src/schema.py'
+        sh 'pylint --disable=too-many-public-methods,missing-docstring src/error.py'
+        sh 'pylint --disable=too-many-public-methods,missing-docstring test/test_schema_processing.py'
+        sh 'pylint --disable=too-many-public-methods,missing-docstring test/test_validation.py'
+    end
+
     desc 'Type checker'
     task :type do
         sh 'mypy --ignore-missing-imports src/descriptor.py'
@@ -23,17 +32,8 @@ namespace :test do
         sh 'coverage report -m'
     end
 
-    desc 'Python linter'
-    task:lint do
-        sh 'pylint --disable=too-many-public-methods,missing-docstring src/descriptor.py'
-        sh 'pylint --disable=too-many-public-methods,missing-docstring src/schema.py'
-        sh 'pylint --disable=too-many-public-methods,missing-docstring src/error.py'
-        sh 'pylint --disable=too-many-public-methods,missing-docstring test/test_schema_processing.py'
-        sh 'pylint --disable=too-many-public-methods,missing-docstring test/test_validation.py'
-    end
-
     desc 'All tests'
-    task :all => [:type, :unit, :coverage, :lint]
+    task :all => [:lint, :type, :unit, :coverage]
 end
 
 namespace :docker do
